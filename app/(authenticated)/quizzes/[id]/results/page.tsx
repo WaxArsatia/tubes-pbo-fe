@@ -64,7 +64,7 @@ export default function QuizResultsPage() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <LoadingSpinner className="h-8 w-8" />
+        <LoadingSpinner className="w-8 h-8" />
       </div>
     );
   }
@@ -85,7 +85,7 @@ export default function QuizResultsPage() {
     );
   }
 
-  if (!quiz || !quiz.results || quiz.results.length === 0 || !quiz.correctAnswers) {
+  if (!quiz || !quiz.results || quiz.results.length === 0 || quiz.correctAnswers === undefined) {
     return (
       <div className="container max-w-4xl py-8">
         <ErrorMessage message="No results available" />
@@ -117,10 +117,10 @@ export default function QuizResultsPage() {
       {/* Score Summary Card */}
       <Card className="mb-6">
         <CardContent className="pt-6">
-          <div className="text-center space-y-4">
+          <div className="space-y-4 text-center">
             {/* Score Display */}
             <div>
-              <div className="text-6xl font-bold mb-2">
+              <div className="mb-2 text-6xl font-bold">
                 {Math.round(scorePercentage)}%
               </div>
               <div className="text-xl text-muted-foreground">
@@ -131,12 +131,12 @@ export default function QuizResultsPage() {
             {/* Pass/Fail Badge */}
             <div>
               {isPassed ? (
-                <Badge className="bg-primary text-primary-foreground px-4 py-2 text-lg">
+                <Badge className="px-4 py-2 text-lg bg-primary text-primary-foreground">
                   <CheckCircle className="w-5 h-5 mr-2" />
                   Passed
                 </Badge>
               ) : (
-                <Badge className="bg-destructive text-destructive-foreground px-4 py-2 text-lg">
+                <Badge className="px-4 py-2 text-lg bg-destructive text-destructive-foreground">
                   <XCircle className="w-5 h-5 mr-2" />
                   Failed
                 </Badge>
@@ -169,7 +169,7 @@ export default function QuizResultsPage() {
 
       {/* Question Review */}
       <div className="space-y-4">
-        <h2 className="text-2xl font-semibold mb-4">Question Review</h2>
+        <h2 className="mb-4 text-2xl font-semibold">Question Review</h2>
 
         {quiz.results.map((result, index) => (
           <Card
@@ -182,8 +182,8 @@ export default function QuizResultsPage() {
           >
             <CardHeader>
               <div className="flex items-start justify-between gap-4">
-                <h3 className="text-lg font-medium flex-1">
-                  <span className="text-muted-foreground mr-2">
+                <h3 className="flex-1 text-lg font-medium">
+                  <span className="mr-2 text-muted-foreground">
                     {index + 1}.
                   </span>
                   {result.question}
@@ -198,7 +198,7 @@ export default function QuizResultsPage() {
             <CardContent className="space-y-3">
               {/* User Answer */}
               <div className="flex items-start gap-2">
-                <span className="font-semibold text-sm">Your Answer:</span>
+                <span className="text-sm font-semibold">Your Answer:</span>
                 <span
                   className={`font-medium ${
                     result.isCorrect ? "text-primary" : "text-destructive"
@@ -211,7 +211,7 @@ export default function QuizResultsPage() {
               {/* Correct Answer (if wrong) */}
               {!result.isCorrect && (
                 <div className="flex items-start gap-2">
-                  <span className="font-semibold text-sm">Correct Answer:</span>
+                  <span className="text-sm font-semibold">Correct Answer:</span>
                   <span className="font-medium text-primary">
                     {result.correctAnswer}
                   </span>
@@ -220,7 +220,7 @@ export default function QuizResultsPage() {
 
               {/* Explanation */}
               <div className="pt-2 border-t border-border">
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm leading-relaxed text-muted-foreground">
                   <span className="font-semibold text-foreground">
                     Explanation:
                   </span>{" "}
