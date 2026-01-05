@@ -1,8 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PDF Summarization & Quiz Platform
+
+A Next.js 16.1 App Router application for PDF summarization and quiz generation using AI.
+
+## Prerequisites
+
+- Node.js 18+ 
+- npm/yarn/pnpm/bun
+- Backend API running (default: http://localhost:8080)
+
+## Environment Setup
+
+1. Copy the environment template:
+```bash
+cp .env.example .env.local
+```
+
+2. Configure environment variables in `.env.local`:
+```env
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8080/api
+```
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
