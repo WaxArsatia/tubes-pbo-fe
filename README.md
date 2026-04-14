@@ -1,68 +1,84 @@
-# PDF Summarization & Quiz Platform
+# tubes-pbo-fe
 
-A Next.js 16.1 App Router application for PDF summarization and quiz generation using AI.
+Frontend for a PDF summarization and quiz platform, built with Next.js App Router. The app supports user authentication, PDF upload and summarization, quiz generation/taking, history management, and admin pages for monitoring and user management.
 
-## Prerequisites
+## Features
 
-- Node.js 18+ 
-- npm/yarn/pnpm/bun
-- Backend API running (default: http://localhost:8080)
+- Authentication flows: register, login, email verification, forgot/reset password.
+- Protected user area with dashboard, summaries, quizzes, history, and account settings.
+- PDF upload (up to 10MB in client validation), AI summary display, download, and deletion.
+- Quiz generation from summaries with difficulty and question count options.
+- Quiz attempt flow (take quiz, submit answers, view results with explanations).
+- Admin area with dashboard stats/charts, activity log, and user management (list/detail/create/edit/delete).
 
-## Environment Setup
+## Tech Stack
 
-1. Copy the environment template:
-```bash
-cp .env.example .env.local
-```
+- Next.js 16 (App Router) + React 19 + TypeScript.
+- Tailwind CSS v4 and shadcn/ui components.
+- Axios for API calls.
+- Recharts for admin dashboard charts.
+- Sonner for toast notifications.
 
-2. Configure environment variables in `.env.local`:
-```env
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8080/api
-```
+## Setup and Run
 
-## Getting Started
-
-First, install dependencies:
+1. Install dependencies:
 
 ```bash
 npm install
 # or
-yarn install
-# or
-pnpm install
-# or
 bun install
 ```
 
-Then, run the development server:
+2. Create local environment file:
+
+```bash
+cp .env.example .env.local
+```
+
+3. Set API base URL in `.env.local`:
+
+```env
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8080/api
+```
+
+4. Start development server:
 
 ```bash
 npm run dev
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Other scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+npm run lint
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```text
+app/
+	(authenticated)/     # protected user pages
+	(admin)/             # admin-only pages
+	login register verify forgot-password reset-password
+components/
+	ui/                  # shared UI primitives (shadcn-based)
+	admin/               # admin-specific components/modals
+contexts/              # auth context provider
+hooks/                 # auth/session hooks
+lib/                   # api client, auth helpers, validators, types, utils
+public/                # static assets
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+No `CONTRIBUTING` guide is currently included in this repository.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+No `LICENSE` file is currently included in this repository.
